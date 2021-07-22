@@ -1,0 +1,3 @@
+App["Controller"]["construct"] = function() {
+	
+}

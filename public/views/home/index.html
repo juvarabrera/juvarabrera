@@ -1,0 +1,425 @@
+<div id="view">
+	<script>
+	var images = [];
+	images.push("1.jpg");
+	images.push("2.jpg");
+	images.push("3.jpg");
+	images.push("4.jpg");
+	images.push("5.jpg");
+	images.push("6.jpg");
+	<!--//--><![CDATA[//><!--
+		var imagesx = new Array()
+		function preload() {
+			for (var y = 0; y < preload.arguments.length; y++) {
+				imagesx[y] = new Image()
+				imagesx[y].src = preload.arguments[y]
+			}
+		}
+		for(var x = 0; x < images.length; x++) {
+			preload("assets/images/slideshow/"+images[x])
+		}
+	//--><!]]>
+	var i = 0;
+	function slideshow() {
+		if(i >= images.length) {
+			i = 0;
+		}
+		$("section.video").css({
+			"background-image": "url(assets/images/slideshow/"+images[i]+")"
+		}, 500);
+		i++;
+		setTimeout(function() {
+			slideshow();
+		}, 5000);
+	}
+	slideshow();
+	if(App.isMobile())
+		$("#vid").hide();
+	</script>
+	<div class="action-bar container">
+		<div class="wrapper">
+			<div class="table middle">
+				<div class="row">
+					<div class="cell">
+						<a href="#" class="logo"></a>
+					</div>
+					<div class="cell right">
+						<div class="menu">
+							<i class="mdi mdi-menu"></i>
+							<ul class="nav">
+								<li><a onclick="App.Function.navigate('about')">About</a></li>
+								<li><a onclick="App.Function.navigate('webdesign')">Projects</a></li>
+								<li><a onclick="App.Function.navigate('crypto')">Crypto</a></li>
+								<li><a onclick="App.Function.navigate('speaking')">Speaking</a></li>
+								<li><a onclick="App.Function.navigate('photography')">Photography</a></li>
+								<li><a onclick="App.Function.navigate('reachme')">Reach me</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="video">
+		<video id="vid" video autobuffer autoplay loop>
+			<source id="mp4" src="assets/images/bg.mp4" type="video/mp4">
+		</video>
+	</section>
+	<section class="transparent cover table middle center" id="mainCover" style="height: 600px">
+		<div class="cell">
+			<span class="wrap"></span><div class="blink "></div>
+		</div>
+	</section>
+	<script>
+		$("#mainCover").outerHeight($(window).height());
+	</script>
+	<section name="about" class="color">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper center">
+							<img src="assets/images/me.jpg" class="me t-w-6 m-w-8"><br><br>
+							<h1>Juvar Abrera</h1>
+							<p>Co-Founder & Chief Technology Officer, Yaka.ph</p>
+							<p>Lead Developer, College of Medicine University of the Philippines Manila</p>
+							<p>Senior Developer, National Telehealth Center University of the Philippines Manila</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="transparent">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>About</h1>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<p>Juvar is an agile full-stack web developer working with different projects in National Telehealth Center and College of Medicine, both at the University of the Philippines Manila. He's also the Chief Technology Officer of Pivotal Peak Digital Health Solutions, a pioneer spin-off of U.P. Manila. Back in 2016 to 2018, he was the Creatives Manager then a Community Manager of Google Developer Group Philippines (GDGPH), a developer community program by Google that provides opportunities and share different Google technologies to local developers. Juvar holds a Bachelors Degree in Information Technology from the De La Salle University Dasmariñas, Cavite, Philippines. </p>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<div class="skill">
+								<div class="level-90"></div>
+								<span>HTML, CSS, Javascript</span>
+							</div>
+							<div class="skill">
+								<div class="level-80"></div>
+								<span>Python</span>
+							</div>
+							<div class="skill">
+								<div class="level-75"></div>
+								<span>Java</span>
+							</div>
+							<div class="skill">
+								<div class="level-75"></div>
+								<span>SQL</span>
+							</div>
+							<div class="skill">
+								<div class="level-50"></div>
+								<span>UX Design</span>
+							</div>
+							<div class="skill">
+								<div class="level-40"></div>
+								<span>PHP</span>
+							</div>
+							<div class="tag">Polymer</div>
+							<div class="tag">Progressive Web Apps</div>
+							<div class="tag">Firebase</div>
+							<div class="tag">Material Design</div>
+							<div class="tag">Google Assistant</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section name="webdesign" class="color">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>Projects</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="scrollable columns" id="webdesign">
+				<div class="scrollable_content"></div>
+			</div>
+			<div class="wrapper"></div>
+		</div>
+	</section>
+	<section name="crypto">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>Crypto</h1>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<h2>Public Portfolio</h2>
+							<div id="chartContainer" style="height: 370px; width: 100%; margin: 24px 0px;"></div>
+							<small style="color: #666; margin-top: 12px;">Last update on June 10, 2021</small>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<p>I have been investing on crypto days before the top of 2017 bull market. Yes, near the top of the $19,000 BTC. I have recently been doing technical analysis of different coins, mostly Bitcoin, on my <a href="https://www.tradingview.com/u/Juvssss/" target="_blank">TradingView profile</a>.</p>
+							<p>If you're also into cryptocurrency, join our community chat at <a href="https://coinstothemoon.com/" target="_blank">CoinsToTheMoon.com</a>.</p>
+							<p>To the moon,<br>Juvs 🚀</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		$(window).resize(function() {
+			padLeft();
+		})	
+		padLeft();
+		function padLeft() {
+			$("#webdesign .scrollable_content").css("padding-left", $("section[name=webdesign] h1").offset().left)
+			$("#speaking .scrollable_content").css("padding-left", $("section[name=speaking] h1").offset().left)
+			$("#photography .scrollable_content").css("padding-left", $("section[name=photography] h1").offset().left)
+		}
+	</script>
+	<section name="speaking" class="transparent">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>Speaking</h1>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<p>I'm a former organizer of Google Developer Group Philippines (GDGPH) where I give talks about different Google Technologies to tech enthusiast, professionals, and students.</p>
+							<div class="table transparent center events">
+								<div class="row">
+									<div class="cell">
+										<b id="totalEvents"></b>Events
+									</div>
+									<div class="cell">
+										<b id="totalParticipants">8</b>Participants
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<img src="assets/images/speaking.jpg" class="w-12">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section name="events" class="color">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>Events</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="scrollable columns" id="speaking">
+				<div class="scrollable_content"></div>
+			</div>
+			<div class="wrapper"></div>
+		</div>
+	</section>
+	<section name="photography">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>Photography</h1>
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper center">
+							<img src="assets/images/gear.jpg" class="w-12">
+						</div>
+					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<p>As a hobby, I love to capture nature specifically sunrises, sunsets, lightnings, eclipses, meteor showers, and more things whatever nature is doing.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="color">
+		<div class="container">
+			<div class="wrapper"></div>
+			<div class="scrollable columns" id="photography">
+				<div class="scrollable_content"></div>
+			</div>
+			<div class="wrapper"></div>
+		</div>
+	</section>
+	<section name="reachme" class="color">
+		<div class="container">
+			<div class="wrapper">
+				<div class="columns">
+					<div class="col-12">
+						<div class="wrapper">
+							<h1>Reach me</h1>
+						</div>
+					</div>
+					<div class="col-7 t-col-12">
+						<div class="wrapper">
+							<p>Pst! Want me to design your website or speak to your event?<br><br>Let's talk at <span class="primary-text">me [at] juvarabrera.com</span></p>
+						</div>
+					</div>
+					<div class="col-5 t-col-12">
+						<div class="wrapper">
+							<p>You can also follow me on my social media accounts.</p>
+							<a href="https://www.linkedin.com/in/juvar-abrera-4ba003b2/" target="_blank"><i class="mdi mdi-linkedin"></i></a>
+							<a href="https://github.com/juvarabrera" target="_blank"><i class="mdi mdi-github-circle"></i></a>
+							<a href="https://www.facebook.com/juvarabrera" target="_blank"><i class="mdi mdi-facebook"></i></a>
+						</div>
+					</div>
+					<div class="col-12 center">
+						<br><br><br>Copyright 2012-2021. Designed and developed by me.<br><br><br><img src="assets/images/logo/logo_blue.png" width="36px" style="box-shadow: 0px 0px 0px black">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		$(document).ready(function() {
+			for(var i in App.Data.webdesign) {
+				$("#webdesign .scrollable_content").append(
+					$("<div></div>").addClass("photo").css("background-image", "url(assets/images/webdesign/"+i+"/logo.jpg)").append(
+						$("<div></div>").addClass("ss").append(
+							$("<div></div>").addClass("table").append(
+								$("<div></div>").addClass("cell").html("<b>"+App.Data.webdesign[i].title+"</b><br><p>"+App.Data.webdesign[i].desc+"</p>")
+							)
+						)
+					)
+				);
+			}
+			var totalEvents = 0,
+				totalParticipants = 0;
+			for(var i in App.Data.speaking) {
+				totalEvents++;
+				totalParticipants += App.Data.speaking[i].p;
+				$("#speaking .scrollable_content").append(
+					$("<div></div>").addClass("photo").css("background-image", "url(assets/images/speaking/"+i+".jpg)").append(
+						$("<div></div>").addClass("ss").append(
+							$("<div></div>").addClass("table").append(
+								$("<div></div>").addClass("cell").html("<b>"+App.Data.speaking[i].topic+"</b><br><p>"+App.Data.speaking[i].event+"<br>"+App.Data.speaking[i].venue+"<br>"+App.Data.speaking[i].date+((App.Data.speaking[i].p != 0) ? "<br>"+App.Data.speaking[i].p+" participants" : "")+"</p>")
+							)
+						)
+					)
+				);
+			}
+			for(var i in App.Data.photography) {
+				$("#photography .scrollable_content").append($("<div></div>").addClass("photo").css("background-image", "url(assets/images/photography/"+App.Data.photography[i]+".jpg)"));
+			}
+			$("#totalEvents").text(totalEvents);
+			$("#totalParticipants").text(totalParticipants);
+			var data = [
+					"Hi,>>> there!", 
+					"My >>>name is<< Ju>>var.", 
+					"You>>> can c<<<<all me>>> Juvs.", 
+					"I>>> like bacons|>>> and stuff.",
+					"I lov>>>eeeeee <<to design>> websites.",
+					"With >>>codes <<and >stuff>> like that.",
+					"And<< al>>>>so<< tak>>>>e pictures.",
+					"Lo>>rem ip<<sum|>>> something something",
+					"You're >>wasting your time<<< readi>>>>ng this.",
+					"Why are >>>you still reading <<<th>>>>>is?",
+					"I>>f you're bor>ed, you ca<<n close>>> this website.",
+					"L>>et's pla>y a game.",
+					"I>>>t's called|>> 'Do >Not'",
+					"L>>>et's start!",
+					"D>>>O NOT READ THIS TEXT!|>>>!!!!!!!!!!",
+					"H<<ehe|>>, you> lose.",
+					"What?| You>>'re >still here?",
+					"Do >>you even> hav<<e a>>> life?",
+					"U>>>ggggggghhhhhhhh",
+					"I'm >>>just go<nna st<a>>rt over now<<<<, okay?",
+				];
+			// var data = [
+			// 	"H>>>ey.|>>> It's Juvar.|>>> Juvar Abrera.",
+			// 	"T>>>hat's right.",
+			// 	"D>>>on't adjust your<<<...>>> whatever device you're seeing this on.",
+			// 	"I>>>t's me|>>>, live and on-screen.",
+			// 	"N>>>o return engagements,|>>> no encore,|>>> and this time, absolutely no requests.",
+			// 	"G>>>et a snack. Settle in.",
+			// 	"B>>>ecause I'm about to tell you the story of my life",
+			// 	"M>>>ore specifically, why I love programming.",
+			// 	"A>>>nd if you're reading this on my website|>>>, you're one of the reasons why.",
+			// 	"I>>>'m not saying which page brings you into the story",
+			// 	"B>>>ut fear not|>>>, if you visited this lovely website, your name will pop up.",
+			// 	"I promise."
+			// ]
+			new TypeWriter($("#mainCover span.wrap"), {
+				"data": data
+			})
+		})
+	</script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script>
+		window.onload = function() {
+		
+			var chart = new CanvasJS.Chart("chartContainer", {
+				backgroundColor: "transparent",
+				data: [{
+					type: "pie",
+					startAngle: -90,
+					yValueFormatString: "##0.00\"%\"",
+					indexLabel: "{label} {y}",
+					dataPoints: [
+						{y: 51.31, label: "BTC"},
+						{y: 11.29, label: "ADA"},
+						{y: 6.37, label: "ETH"},
+						{y: 4.15, label: "BETH"},
+						{y: 2.49, label: "LINK"},
+						{y: 2.30, label: "MARK"},
+						{y: 2.12, label: "RAINI"},
+						{y: 2.10, label: "SUSHI"},
+						{y: 1.97, label: "STMX"},
+						{y: 1.78, label: "ICP"},
+						{y: 1.70, label: "FIL"},
+						{y: 1.59, label: "SOL"},
+						{y: 1.57, label: "BOSON"},
+						{y: 1.55, label: "ARTEON"},
+						{y: 1.54, label: "VET"},
+						{y: 1.25, label: "REEF"},
+						{y: 1.04, label: "ENJ"},
+						{y: 0.98, label: "DOT"},
+						{y: 0.94, label: "DENT"},
+						{y: 0.79, label: "CAKE"},
+						{y: 0.63, label: "WABI"},
+						{y: 0.53, label: "UNI"},
+					]
+				}]
+			});
+			chart.render();
+		
+		}
+	</script>
+</div>
