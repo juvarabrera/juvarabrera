@@ -78,12 +78,13 @@
 			<div class="wrapper">
 				<div class="columns">
 					<div class="col-12">
-						<div class="wrapper center">
+						<div class="wrapper center base">
 							<img src="assets/images/me.jpg" class="me t-w-6 m-w-8"><br><br>
 							<h1>Juvar Abrera</h1>
 							<p>Co-Founder & Chief Technology Officer, Yaka.ph</p>
-							<p>Lead Developer, College of Medicine University of the Philippines Manila</p>
-							<p>Senior Developer, National Telehealth Center University of the Philippines Manila</p>
+							<p>Co-Founder, Pivolta Peak Digital Health Solutions, Inc.</p>
+							<!-- <p>Lead Developer, College of Medicine University of the Philippines Manila</p> -->
+							<p>Web Developer, National Telehealth Center, University of the Philippines Manila</p>
 						</div>
 					</div>
 				</div>
@@ -159,8 +160,8 @@
 		</div>
 	</section>
 	<section name="crypto">
-		<div class="container">
-			<div class="wrapper">
+		<div class="container" style="padding-bottom: 52px">
+			<div class="wrapper" style="padding-bottom: 0px">
 				<div class="columns">
 					<div class="col-12">
 						<div class="wrapper">
@@ -169,33 +170,32 @@
 					</div>
 					<div class="col-6 t-col-12">
 						<div class="wrapper">
-							<h2>Public Portfolio</h2>
-							<div id="chartContainer" style="height: 370px; width: 100%; margin: 24px 0px;"></div>
-							<small style="color: #666; margin-top: 12px;">Last update on June 10, 2021</small>
-						</div>
-					</div>
-					<div class="col-6 t-col-12">
-						<div class="wrapper">
-							<p>I have been investing on crypto days before the top of 2017 bull market. Yes, near the top of the $19,000 BTC. I have recently been doing technical analysis of different coins, mostly Bitcoin, on my <a href="https://www.tradingview.com/u/Juvssss/" target="_blank">TradingView profile</a>.</p>
+							<p style="text-align: center;"><img src="assets/images/dp.jpg" style="border-radius: 100%; margin: 0px auto;" width="50%"></p>
+							<p>I have been investing on crypto days before the top of 2017 bull market. Yes, near the top of the $19,000 BTC 😥. I have recently been doing technical analysis of different coins, mostly Bitcoin, on my <a href="https://www.tradingview.com/u/Juvssss/" target="_blank">TradingView profile</a>.</p>
 							<p>If you're also into cryptocurrency, join our community chat at <a href="https://coinstothemoon.com/" target="_blank">CoinsToTheMoon.com</a>.</p>
 							<p>To the moon,<br>Juvs 🚀</p>
 						</div>
 					</div>
+					<div class="col-6 t-col-12">
+						<div class="wrapper">
+							<h2>Holdings</h2>
+							<div id="chartContainer" style="height: 370px; width: 100%; margin: 24px 0px;"></div>
+							<small style="color: #666; margin-top: 12px;">Last update on June 11, 2022.</small>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="wrapper">
+							<h2>Analyses</h2>
+							<p class="base-width">My ideas are not meant to be, and do not constitute, financial, investment, trading, or other types of advice or recommendations.</p>
+						</div>
+					</div>
 				</div>
+			</div>
+			<div class="scrollable columns" id="crypto">
+				<div class="scrollable_content"></div>
 			</div>
 		</div>
 	</section>
-	<script>
-		$(window).resize(function() {
-			padLeft();
-		})	
-		padLeft();
-		function padLeft() {
-			$("#webdesign .scrollable_content").css("padding-left", $("section[name=webdesign] h1").offset().left)
-			$("#speaking .scrollable_content").css("padding-left", $("section[name=speaking] h1").offset().left)
-			$("#photography .scrollable_content").css("padding-left", $("section[name=photography] h1").offset().left)
-		}
-	</script>
 	<section name="speaking" class="transparent">
 		<div class="container">
 			<div class="wrapper">
@@ -298,17 +298,63 @@
 							<a href="https://www.linkedin.com/in/juvar-abrera-4ba003b2/" target="_blank"><i class="mdi mdi-linkedin"></i></a>
 							<a href="https://github.com/juvarabrera" target="_blank"><i class="mdi mdi-github-circle"></i></a>
 							<a href="https://www.facebook.com/juvarabrera" target="_blank"><i class="mdi mdi-facebook"></i></a>
+							<a href="https://www.twitter.com/JuvarAbrera" target="_blank"><i class="mdi mdi-twitter"></i></a>
+							<a href="https://www.twitch.tv/JuvarAbrera" target="_blank"><i class="mdi mdi-twitch"></i></a>
 						</div>
 					</div>
 					<div class="col-12 center">
-						<br><br><br>Copyright 2012-2021. Designed and developed by me.<br><br><br><img src="assets/images/logo/logo_blue.png" width="36px" style="box-shadow: 0px 0px 0px black">
+						<br><br><br>Copyright 2012-2022. Designed and developed by me.<br><br><br><img src="assets/images/logo/logo_blue.png" width="36px" style="box-shadow: 0px 0px 0px black">
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<script>
+		$(window).resize(function() {
+			padLeft();
+		})	
+		function padLeft() {
+			$("#crypto .photo").css({
+				"width": $(".base-width").innerWidth(),
+				"height": $(".base-width").innerWidth() * 479 / 759
+			})
+			$("#webdesign .scrollable_content").css("padding-left", $("section[name=webdesign] h1").offset().left)
+			$("#speaking .scrollable_content").css("padding-left", $("section[name=speaking] h1").offset().left)
+			$("#photography .scrollable_content").css("padding-left", $("section[name=photography] h1").offset().left)
+			$("#crypto .scrollable_content").css("padding-left", $("section[name=crypto] h1").offset().left)
+		}
 		$(document).ready(function() {
+			$("input[readonly]").click(function() {
+				$(this).select();
+				try {
+					let successful = document.execCommand('copy');
+					if(successful) {
+						alert("The address was copied.");
+					}
+				} catch(err) {
+					
+				}
+			})
+			padLeft();
+			var chart = new CanvasJS.Chart("chartContainer", {
+				backgroundColor: "transparent",
+				data: [{
+					type: "pie",
+					startAngle: -90,
+					yValueFormatString: "##0.00\"%\"",
+					indexLabel: "{label} {y}",
+					dataPoints: [
+						{y: 100, label: "USDT"},
+						{y: 0, label: "BTC", color: "orange"},
+						{y: 0, label: "Others", color: "gray"},
+					]
+				}]
+			});
+			chart.render();
+			for(var i in App.Data.analyses) {
+				$("#crypto .scrollable_content").append($("<div></div>").addClass("photo").addClass("large").css("background-image", "url("+App.Data.analyses[i].image+")"));
+			}
+			padLeft();
 			for(var i in App.Data.webdesign) {
 				$("#webdesign .scrollable_content").append(
 					$("<div></div>").addClass("photo").css("background-image", "url(assets/images/webdesign/"+i+"/logo.jpg)").append(
@@ -380,46 +426,5 @@
 				"data": data
 			})
 		})
-	</script>
-	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-	<script>
-		window.onload = function() {
-		
-			var chart = new CanvasJS.Chart("chartContainer", {
-				backgroundColor: "transparent",
-				data: [{
-					type: "pie",
-					startAngle: -90,
-					yValueFormatString: "##0.00\"%\"",
-					indexLabel: "{label} {y}",
-					dataPoints: [
-						{y: 51.31, label: "BTC"},
-						{y: 11.29, label: "ADA"},
-						{y: 6.37, label: "ETH"},
-						{y: 4.15, label: "BETH"},
-						{y: 2.49, label: "LINK"},
-						{y: 2.30, label: "MARK"},
-						{y: 2.12, label: "RAINI"},
-						{y: 2.10, label: "SUSHI"},
-						{y: 1.97, label: "STMX"},
-						{y: 1.78, label: "ICP"},
-						{y: 1.70, label: "FIL"},
-						{y: 1.59, label: "SOL"},
-						{y: 1.57, label: "BOSON"},
-						{y: 1.55, label: "ARTEON"},
-						{y: 1.54, label: "VET"},
-						{y: 1.25, label: "REEF"},
-						{y: 1.04, label: "ENJ"},
-						{y: 0.98, label: "DOT"},
-						{y: 0.94, label: "DENT"},
-						{y: 0.79, label: "CAKE"},
-						{y: 0.63, label: "WABI"},
-						{y: 0.53, label: "UNI"},
-					]
-				}]
-			});
-			chart.render();
-		
-		}
 	</script>
 </div>
