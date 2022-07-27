@@ -1,41 +1,61 @@
 'use strict';
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+
+var sass = require('gulp-sass')(require('sass'));
 var cleanCSS = require('gulp-clean-css');
-var uglify = require('gulp-uglify');
-var pump = require('pump');
+var uglifyes = require('uglify-es');
+var composer = require('gulp-uglify/composer');
+var uglify = composer(uglifyes, composer);
+
 var concat = require('gulp-concat');
 
-var webserver = require('gulp-webserver');
+const src_dir = "./oslo";
+const public_dir = "./public";
+const development = true;
 
-var config = {
-	"src": "./src",
-	"public": "./public",
-	"development": false
-}
+gulp.task('build', async function (cb) {
+	gulp.src([
+			`${src_dir}/style.scss`
+		])
+		.pipe(sass().on('error', sass.logError))
+		.pipe(cleanCSS())
+		.pipe(gulp.dest(`${public_dir}/`));
 
-gulp.task('default', function (cb) {
-	var t = gulp.src(config.src+'/**/*.scss')
-		.pipe(sass.sync().on('error', sass.logError))
-	if(!config.development)
-		t = t.pipe(cleanCSS());
-	t.pipe(gulp.dest(config.public+'/assets'));
+	var x = gulp.src([
+			`${src_dir}/Oslo.js`,
+			`${src_dir}/core/*.js`,
+			`${src_dir}/controllers/*.js`,
+			`${src_dir}/classes/*.js`,
+		])
+	if(!development)
+		x = x.pipe(development ? false : uglify())
+	x.pipe(concat('oslo.min.js'))
+		.pipe(gulp.dest(`${public_dir}/`));
 
-	t = [gulp.src(config.src+'/**/*.js')];
-	if(!config.development) {
-		t.push(uglify());
-	}
-	t.push(concat('build.min.js'));
-	t.push(gulp.dest(config.public+'/assets/scripts'));
-	pump(t, cb);
+	gulp.src([
+			`${src_dir}/index.html`,
+			`${src_dir}/favicon.ico`,
+			`${src_dir}/views`,
+			`${src_dir}/assets`,
+		])
+		.pipe(gulp.dest(`${public_dir}/`));
+	
+	[
+		"views", 
+		"assets"
+	].forEach(folder => {
+		gulp.src([
+			`${src_dir}/${folder}/**`,
+		])
+		.pipe(gulp.dest(`${public_dir}/${folder}`))
+	});
+	// gulp.src([
+	// 	`${src_dir}/assets/**`,
+	// ])
+	// .pipe(gulp.dest(`${public_dir}/assets`))
 });
-gulp.task('serve', function() {
-	return gulp.src('./public/')
-		.pipe(webserver({
-			host: '127.0.0.1',
-			port: 8087,
-			livereload: true,
-			open: true
-		}));
-})
+
+gulp.task('watch', function() {
+    gulp.watch(['oslo/**/*.*'], gulp.series('build'));
+});
