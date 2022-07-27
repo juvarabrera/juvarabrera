@@ -1,0 +1,9 @@
+Oslo.Controller["CryptoController"] = {
+	"construct": function(parameters) {
+		
+	},
+	"index": function(parameters) {
+		
+		return Oslo.View.render();
+	}
+}

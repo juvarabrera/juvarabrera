@@ -1,0 +1,28 @@
+{
+  "name": "juvarabrera",
+  "version": "5.0.0",
+  "description": "Juvar Abrera Personal Website v5",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juvarabrera/juvarabrera.git"
+  },
+  "author": "Juvar Abrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juvarabrera/juvarabrera/issues"
+  },
+  "homepage": "https://github.com/juvarabrera/juvarabrera#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.54.0",
+    "uglify-es": "^3.3.9"
+  }
+}

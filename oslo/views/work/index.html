@@ -1,0 +1,137 @@
+<div id="view">
+    <section class="portfolio bg" id="portfolio">
+        <div class="top-shadow"></div>
+        <div class="wrapper">
+            <h2 class="text-white">Work<div></div></h2>
+            <p>After years of creating and designing web app solutions, the following are the projects I have worked on.</p>
+            <div class="portfolio-container">
+                <div class="portfolio-item" data-template>
+                    <div class="portfolio-ss">
+                    
+                    </div>
+                    <div class="portfolio-desc" >
+                        <div class="portfolio-header">
+                            <h3></h3>
+                            <img src="" height="30px" alt="">
+                        </div>
+                        <h5></h5><span></span>
+                        <p></p>
+                        <div class="portfolio-tags-button">
+                            <div class="tags"></div>
+                            <a data-portfolio class="btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item loading">
+                    <div class="portfolio-ss">
+                    
+                    </div>
+                    <div class="portfolio-desc">
+                        <div class="portfolio-header">
+                            <h3></h3>
+                            <div class="portfolio-logo"></div>
+                        </div>
+                        <h5></h5>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+            <a onclick="viewMoreOrLess(event)" class="btn" style="display: block;">View More</a>
+            <div class="d-flex justify-content-around" style="margin-top: 48px;">
+                <div class="big-number">
+                    <h1 id="num_years" data-animate-number-to="6">0</h1>
+                    <span>Years of Experience</span>
+                </div>
+                <div class="big-number">
+                    <h1 id="num_projects_ongoing" data-animate-number-to="">0</h1>
+                    <span>On-going Projects</span>
+                </div>
+                <div class="big-number">
+                    <h1 id="num_projects" data-animate-number-to="">0</h1>
+                    <span>Projects</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around" style="margin-top: 48px;">
+                <div class="big-number">
+                    <h1 id="num_worked_month" data-animate-number-to="">0</h1>
+                    <span>hours worked this month</span>
+                </div>
+                <div class="big-number">
+                    <h1 id="num_worked_year" data-animate-number-to="">0</h1>
+                    <span>hours worked this year</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around" style="margin-top: 48px;">
+                <div class="big-number">
+                    <h1 id="num_worked_today">...</h1>
+                    <span>worked today</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="wordcloud" style="padding-bottom: 48px;">
+        <div id="wordcloud"></div>
+        <script>
+            WordCloud(document.getElementById('wordcloud'), {
+                "list": [
+                    ["Python Django", 100],
+                    ["Java Spring", 80],
+                    ["MySQL", 100],
+                    ["Git", 90],
+                    ["HTML", 100],
+                    ["CSS3", 100],
+                    ["SaSS", 80],
+                    ["Javascript", 100],
+                    ["Angular", 30],
+                    ["React", 30],
+                    ["jQuery", 80],
+                    ["Bootstrap", 70],
+                    ["PHP", 30],
+                    ["ASP.NET", 20],
+                    ["Google Cloud Platform", 30],
+                    ["Amazon Web Service", 30],
+                    ["Actions on Google", 50],
+                    ["Dialogflow", 50],
+                    ["Scrum", 80],
+                    ["Progressive Web Apps", 100],
+                    ["Firebase", 70],
+                    ["UX Design", 80],
+                    ["Adobe Photoshop", 60],
+                    ["Adobe Illustrator", 70],
+                    ["Docker", 40],
+                    ["LXD", 30],
+                    ["SSH", 30],
+                    ["Adobe Xd", 100],
+                    ["Linux Management and Security", 50]
+                ],
+                "minSize": "16px",
+                "fontFamily": "grandesign",
+                "color": function(word, weight) {
+                    var maxWeight = 100;
+                    weight = (50 + (weight / 2)) / 100;
+                    return `rgba(0, 92, 185, ${weight})`
+                },
+                "rotateRatio": 0,
+                "shrinkToFit": true,
+                "weightFactor": function (size) {
+                    size = size / 100
+                    size *= 48
+                    return size
+                },
+            });
+        </script>
+    </section>
+    <script>
+        let portfolio = new Portfolio();
+        portfolio.loadData();
+        (async function() {
+            let clockify = new Clockify();
+            await clockify.start();
+            await clockify.loadReport();
+        })();
+    </script>
+</div>

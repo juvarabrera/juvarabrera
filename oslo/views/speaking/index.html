@@ -1,0 +1,58 @@
+<div id="view">
+    
+    <section class="speaking bg" id="speaking">
+        <div class="top-shadow"></div>
+        <div class="wrapper">
+            <h2 class="text-white">Speaking<div></div></h2>
+            <p>I'm a former organizer of Google Developer Group Philippines (GDGPH) where I give talks about different Google Technologies to tech enthusiast, professionals, and students.</p>
+            <div class="speaking-container">
+                <div class="portfolio-item" data-template>
+                    <div class="portfolio-ss">
+                    
+                    </div>
+                    <div class="portfolio-desc" >
+                        <div class="portfolio-header">
+                            <h3></h3>
+                        </div>
+                        <h5></h5><span></span>
+                        <p></p>
+                        <div class="portfolio-tags-button">
+                            <div class="tags"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item loading">
+                    <div class="portfolio-ss">
+                    
+                    </div>
+                    <div class="portfolio-desc">
+                        <div class="portfolio-header">
+                            <h3></h3>
+                            <div class="portfolio-logo"></div>
+                        </div>
+                        <h5></h5>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+            <a onclick="viewMoreOrLess(event)" class="btn" style="display: block;">View More</a>
+            <div class="d-flex justify-content-around" style="margin-top: 48px;">
+                <div class="big-number">
+                    <h1 id="num_events" data-animate-number-to="">0</h1>
+                    <span>Events</span>
+                </div>
+                <div class="big-number">
+                    <h1 id="num_participants" data-animate-number-to="">0</h1>
+                    <span>Participants</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let speaking = new Speaking();
+        speaking.loadData();
+    </script>
+</div>

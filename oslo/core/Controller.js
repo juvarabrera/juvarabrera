@@ -1,0 +1,3 @@
+Oslo["Controller"]["construct"] = function() {
+	
+}
