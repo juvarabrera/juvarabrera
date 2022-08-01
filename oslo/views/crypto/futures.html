@@ -1,0 +1,357 @@
+<div id="view">
+    <section>
+        <div class="wrapper">
+            <h2>Futures Trading Calculator</h2>
+            <table class="table">
+                <tr>
+                    <td>Position*</td>
+                    <td colspan="4">
+                        <select class="form-control" id="position">
+                            <option value="Long">Long</option>
+                            <option value="Short">Short</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Entry Price*</td>
+                    <td colspan="4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input class="form-control" type="number" step="0.01" min="0" id="entry_price">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SL %</td>
+                    <td>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="number" min="0" max="100" id="sl_percent">
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>OR</td>
+                    <td>SL Price</td>
+                    <td>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input class="form-control" type="number" step="0.01" min="0" id="sl_price">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                    <td class="text-center">Calculate Automatically</td>
+                    <td colspan="6"></td>
+                </tr>
+                <tr>
+                    <td width="1px" class="text-center"><input type="radio" name="auto" id="autoRisk"></td>
+                    <td>Risk</td>
+                    <td colspan="4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input class="form-control" type="number" step="0.01" min="0" id="risk_usd">
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <button id="calculateRisk" class="btn btn-primary">Calculate</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="1px" class="text-center"><input type="radio" name="auto" id="autoLeverage"></td>
+                    <td>Leverage</td>
+                    <td colspan="4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">x</span>
+                            </div>
+                            <input class="form-control" type="number" step="1" min="1" max="125" id="leverage">
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <button id="calculateLeverage" class="btn btn-primary">Calculate</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="1px" class="text-center"><input type="radio" name="auto" id="autoMargin"></td>
+                    <td>Margin</td>
+                    <td colspan="4">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input class="form-control" type="number" step="0.01" min="0" id="margin_usd">
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <button id="calculateMargin" class="btn btn-primary">Calculate</button>
+                    </td>
+                </tr>
+            </table>
+            <div class="card grey" style="margin-top: 12px;">
+                <div class="card-body">
+                    <h3>Take Profit</h3>
+                    <table class="table">
+                        <tr>
+                            <td></td>
+                            <td>%</td>
+                            <td>Price</td>
+                            <td>Profit</td>
+                        </tr>
+                        <tr>
+                            <td>TP1</td>
+                            <td>20%</td>
+                            <td>
+                                <span id="tp1_price"></span>
+                            </td>
+                            <td>
+                                <span id="tp1_profit"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TP2</td>
+                            <td>50%</td>
+                            <td>
+                                <span id="tp2_price"></span>
+                            </td>
+                            <td>
+                                <span id="tp2_profit"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>TP3</td>
+                            <td>100%</td>
+                            <td>
+                                <span id="tp3_price"></span>
+                            </td>
+                            <td>
+                                <span id="tp3_profit"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Custom</td>
+                            <td>
+                                <span id="tp4_percent"></span>
+                            </td>
+                            <td>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input class="form-control" type="number" step="0.01" min="0" id="tp4_price">
+                                </div>
+                            </td>
+                            <td>
+                                <span id="tp4_profit"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var entry_price = document.getElementById("entry_price")
+        var position = document.getElementById("position")
+        var sl_percent = document.getElementById("sl_percent")
+        var sl_price = document.getElementById("sl_price")
+        var risk_usd = document.getElementById("risk_usd")
+        var leverage = document.getElementById("leverage")
+        var margin_usd = document.getElementById("margin_usd")
+        var autoRisk = document.getElementById("autoRisk")
+        var autoLeverage = document.getElementById("autoLeverage")
+        var autoMargin = document.getElementById("autoMargin")
+
+        var tp1_price = document.getElementById("tp1_price")
+        var tp1_profit = document.getElementById("tp1_profit")
+        var tp2_price = document.getElementById("tp2_price")
+        var tp2_profit = document.getElementById("tp2_profit")
+        var tp3_price = document.getElementById("tp3_price")
+        var tp3_profit = document.getElementById("tp3_profit")
+        var tp4_percent = document.getElementById("tp4_percent")
+        var tp4_price = document.getElementById("tp4_price")
+        var tp4_profit = document.getElementById("tp4_profit")
+
+        var calculateTP = function() {
+            if(position.value == "Long") {
+                console.log(entry_price.value != "" && leverage.value != "")
+                if(entry_price.value != "" && leverage.value != "") {
+                    tp1_price.innerHTML = "$ " + Math.abs(parseFloat(entry_price.value) + (parseFloat(entry_price.value) * 0.2 / parseFloat(leverage.value))).toFixed(2);
+                    tp2_price.innerHTML = "$ " + Math.abs(parseFloat(entry_price.value) + (parseFloat(entry_price.value) * 0.5 / parseFloat(leverage.value))).toFixed(2);
+                    tp3_price.innerHTML = "$ " + Math.abs(parseFloat(entry_price.value) + (parseFloat(entry_price.value) * 1 / parseFloat(leverage.value))).toFixed(2);
+                } else {
+                    tp1_price.innerHTML = "$ -";
+                    tp2_price.innerHTML = "$ -";
+                    tp3_price.innerHTML = "$ -";
+                }
+            } else {
+                console.log(entry_price.value != "" && leverage.value != "")
+                if(entry_price.value != "" && leverage.value != "") {
+                    tp1_price.innerHTML = "$ " + Math.abs(parseFloat(entry_price.value) - (parseFloat(entry_price.value) * 0.2 / parseFloat(leverage.value))).toFixed(2);
+                    tp2_price.innerHTML = "$ " + Math.abs(parseFloat(entry_price.value) - (parseFloat(entry_price.value) * 0.5 / parseFloat(leverage.value))).toFixed(2);
+                    tp3_price.innerHTML = "$ " + Math.abs(parseFloat(entry_price.value) - (parseFloat(entry_price.value) * 1 / parseFloat(leverage.value))).toFixed(2);
+                } else {
+                    tp1_price.innerHTML = "$ -";
+                    tp2_price.innerHTML = "$ -";
+                    tp3_price.innerHTML = "$ -";
+                }
+            }
+            _tp4_percent = Math.abs(((parseFloat(entry_price.value) - parseFloat(tp4_price.value)) / parseFloat(entry_price.value)) * parseFloat(leverage.value) * 100).toFixed(2);
+            if(!isNaN(_tp4_percent)) {
+                tp4_percent.innerHTML = _tp4_percent + "%";
+                tp4_profit.innerHTML = "$ " + Math.abs((parseFloat(margin_usd.value) * (parseFloat(_tp4_percent) / 100))).toFixed(2);
+            } else {
+                tp4_percent.innerHTML = "- %";
+                tp4_profit.innerHTML = "$ -";
+            }
+            if(margin_usd.value != "") {
+                tp1_profit.innerHTML = "$ " + Math.abs((parseFloat(margin_usd.value) * 0.2)).toFixed(2);
+                tp2_profit.innerHTML = "$ " + Math.abs((parseFloat(margin_usd.value) * 0.5)).toFixed(2);
+                tp3_profit.innerHTML = "$ " + Math.abs((parseFloat(margin_usd.value) * 1)).toFixed(2);
+            } else {
+                tp1_profit.innerHTML = "$ -";
+                tp2_profit.innerHTML = "$ -";
+                tp3_profit.innerHTML = "$ -";
+            }
+        }
+        var getLocal = function() {
+            entry_price.value = localStorage.getItem("entry_price")
+            position.value = localStorage.getItem("position")
+            sl_percent.value = localStorage.getItem("sl_percent")
+            sl_price.value = localStorage.getItem("sl_price")
+            risk_usd.value = localStorage.getItem("risk_usd")
+            leverage.value = localStorage.getItem("leverage")
+            margin_usd.value = localStorage.getItem("margin_usd")
+            tp4_price.value = localStorage.getItem("tp4_price")
+            if(localStorage.getItem("autoRisk") == "on") autoRisk.checked = true; 
+            if(localStorage.getItem("autoLeverage") == "on") autoLeverage.checked = true; 
+            if(localStorage.getItem("autoMargin") == "on") autoMargin.checked = true; 
+            calculateTP();
+        }
+        getLocal();
+
+        var calculateSL = function(calculate = false) {
+            if(calculate) sl_percent.value = (100 * risk_usd.value) / (leverage.value * margin_usd.value)
+            if(sl_percent.value != "" || sl_price.value != "") {
+                if(sl_percent.value == "") {
+                    if(position.value == "Long") {
+                        sl_percent.value = (Math.abs((parseFloat(entry_price.value) - parseFloat(sl_price.value)) / parseFloat(entry_price.value) * 100)).toFixed(2)
+                    } else {
+                        sl_percent.value = (Math.abs((parseFloat(entry_price.value) - parseFloat(sl_price.value)) / parseFloat(entry_price.value) * 100)).toFixed(2)
+                    }
+                } else {
+                    if(position.value == "Long") {
+                        sl_price.value = (parseFloat(entry_price.value) - (parseFloat(entry_price.value) * parseFloat(sl_percent.value) / 100)).toFixed(2)
+                    } else {
+                        sl_price.value = (parseFloat(entry_price.value) + (parseFloat(entry_price.value) * parseFloat(sl_percent.value) / 100)).toFixed(2)
+                    }
+                }
+            }
+        }
+        var saveToLocal = function() {
+            localStorage.setItem("entry_price", entry_price.value)
+            localStorage.setItem("position", position.value)
+            localStorage.setItem("sl_percent", sl_percent.value)
+            localStorage.setItem("sl_price", sl_price.value)
+            localStorage.setItem("risk_usd", risk_usd.value)
+            localStorage.setItem("leverage", leverage.value)
+            localStorage.setItem("margin_usd", margin_usd.value)
+            localStorage.setItem("autoRisk", autoRisk.value)
+            localStorage.setItem("autoLeverage", autoLeverage.value)
+            localStorage.setItem("autoMargin", autoMargin.value)
+            localStorage.setItem("tp4_price", tp4_price.value)
+        }
+        var calculateRisk = function() {
+            risk_usd.value = ((parseFloat(margin_usd.value) * parseFloat(leverage.value) * parseFloat(sl_percent.value)) / 100).toFixed(2);
+        }
+        document.getElementById("calculateRisk").addEventListener("click", function() {
+            calculateSL();
+            calculateRisk();
+            document.getElementById("autoRisk").checked = true;
+            saveToLocal();
+        });
+        var calculateLeverage = function() {
+            leverage.value = (100 * parseFloat(risk_usd.value)) / (parseFloat(sl_percent.value) * parseFloat(margin_usd.value));
+        }
+        document.getElementById("calculateLeverage").addEventListener("click", function() {
+            calculateSL();
+            calculateLeverage();
+            document.getElementById("autoLeverage").checked = true;
+            saveToLocal();
+        }); 
+        var calculateMargin = function() {
+            margin_usd.value = ((100 * parseFloat(risk_usd.value)) / (parseFloat(leverage.value) * parseFloat(sl_percent.value))).toFixed(2);
+        }
+        document.getElementById("calculateMargin").addEventListener("click", function() {
+            calculateSL();
+            calculateMargin();
+            document.getElementById("autoMargin").checked = true;
+            saveToLocal();
+        });
+        var autoCalculate = function() {
+            if(autoRisk.checked) {
+                calculateRisk();
+            } else if(autoLeverage.checked) {
+                calculateLeverage();
+            } else if(autoMargin.checked) {
+                calculateMargin();
+            }
+            calculateTP();
+            saveToLocal();
+        }
+        position.addEventListener("change", function() {
+            autoCalculate();
+            saveToLocal();
+        })
+        entry_price.addEventListener("keyup", function() {
+            calculateSL();
+            autoCalculate();
+            saveToLocal();
+        })
+        sl_percent.addEventListener("keyup", function() {
+            if(position.value == "Long") {
+                sl_price.value = (parseFloat(entry_price.value) - (parseFloat(entry_price.value) * parseFloat(sl_percent.value) / 100)).toFixed(2)
+            } else {
+                sl_price.value = (parseFloat(entry_price.value) + (parseFloat(entry_price.value) * parseFloat(sl_percent.value) / 100)).toFixed(2)
+            }
+            autoCalculate();
+        })
+        sl_price.addEventListener("keyup", function() {
+            if(position.value == "Long") {
+                sl_percent.value = (Math.abs((parseFloat(entry_price.value) - parseFloat(sl_price.value)) / parseFloat(entry_price.value) * 100)).toFixed(2)
+            } else {
+                sl_percent.value = (Math.abs((parseFloat(entry_price.value) - parseFloat(sl_price.value)) / parseFloat(entry_price.value) * 100)).toFixed(2)
+            }
+            autoCalculate();
+        })
+        risk_usd.addEventListener("keyup", function() {
+            autoCalculate();
+        })
+        leverage.addEventListener("keyup", function() {
+            autoCalculate();
+        })
+        margin_usd.addEventListener("keyup", function() {
+            autoCalculate();
+        })
+        tp4_price.addEventListener("keyup", function() {
+            calculateTP();
+            saveToLocal();
+        })
+        position.addEventListener("change", function() {
+            if(position.value == "Long") {
+                sl_price.value = parseFloat(entry_price.value) - (entry_price.value * sl_percent.value / 100)
+            } else {
+                sl_price.value = parseFloat(entry_price.value) + (entry_price.value * sl_percent.value / 100)
+            }
+            autoCalculate();
+        })
+    </script>
+</div>

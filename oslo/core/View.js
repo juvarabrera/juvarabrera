@@ -1,7 +1,6 @@
 Oslo["View"] = {
 	"construct": function(parameters) {
 		this.setTemplate(Oslo.Constant.DEFAULT_TEMPLATE);
-		// $(".app").html("");
 	},
 	"setTemplate": function(template) {
 		this["TEMPLATE"] = template;
@@ -42,6 +41,7 @@ Oslo["View"] = {
 			$("<div></div>").html(content).children().each(function() {
 				$(".app").find("#"+$(this).attr("id")).html($(this).html());
 			});
+			$(document).scrollTop(0)
 			$(".app").attr("oslo-controller", Oslo.Utility.getControllerCode(Oslo.CONTROLLER))
 						.attr("oslo-action", Oslo.ACTION);
 			Oslo.View.destruct();

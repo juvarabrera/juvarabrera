@@ -3,7 +3,7 @@ Oslo.Controller["WorkController"] = {
 
 	},
 	"index": function(parameters) {
-		
+		mixpanel.track("Work");
 		return Oslo.View.render();
 	}
 }

@@ -29,7 +29,9 @@ class TradingView {
         }).then(function(data) {
             return data
         });
-        this.container.querySelector(".loading").remove();
+        this.container.querySelectorAll(".loading").forEach(loading => {
+            loading.remove();
+        })
         for(let i in this.ideas.data) {
             let idea = this.ideas.data[i];
             var clone = this.template.cloneNode(true);
@@ -75,6 +77,10 @@ class TradingView {
         this.modal.classList.add("active");
         document.querySelector("body").classList.add("has-modal");
         let idea = this.ideas.data[ideaIndex];
+        mixpanel.track("Open Crypto Technical Analysis", {
+            "name": idea.name,
+            "url": idea.published_url
+        });
         this.modal.querySelector("h1").innerText = idea.name;
         this.modal.querySelector(".tags").innerHTML = "";
         if(idea.label == "Long") {

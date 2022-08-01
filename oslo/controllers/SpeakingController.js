@@ -3,7 +3,7 @@ Oslo.Controller["SpeakingController"] = {
 		
 	},
 	"index": function(parameters) {
-		
+		mixpanel.track("Speaking");
 		return Oslo.View.render();
 	}
 }

@@ -13,7 +13,9 @@ class Speaking {
             return data
         });
         this.speaking.data = this.speaking.data.reverse();
-        this.container.querySelector(".loading").remove();
+        this.container.querySelectorAll(".loading").forEach(loading => {
+            loading.remove();
+        })
         let participants_count = 0;
         for(let i in this.speaking.data) {
             let speakingItem = this.speaking.data[i];

@@ -67,6 +67,9 @@ class Portfolio {
         this.modal.classList.add("active");
         document.querySelector("body").classList.add("has-modal");
         let project = this.projects.data[projectIndex];
+        mixpanel.track("Open Project", {
+            "name": project.name
+        });
         let timeout = 0;
         if(action != null) {
             timeout = 1000;
@@ -135,22 +138,26 @@ class Portfolio {
         }).then(function(data) {
             return data
         });
-        this.container.querySelector(".loading").remove();
+        this.container.querySelectorAll(".loading").forEach(loading => {
+            loading.remove();
+        })
         this.projects.data = this.projects.data.reverse();
         let ongoing_projects = 0;
         for(let i in this.projects.data) {
             let project = this.projects.data[i];
             var clone = this.template.cloneNode(true);
+            if(project.is_featured) {
+                clone.classList.add("featured");
+            }
             clone.querySelector("h3").innerText = project.name;
             clone.querySelector("h5").innerText = project.position.name;
-            let desc = project.description;
-            let desc_max_length = 64;
-            if(desc.length > desc_max_length) {
-                desc = desc.substring(0,desc_max_length) + "...";
-            }
-            clone.querySelector("p").innerText = desc;
+            clone.querySelector("p").innerText = project.description;
             if(project.client != null) {
-                clone.querySelector("img").src = JuvarAbrera.API_ROOT_URL + project.client.logo;
+                if(project.is_featured) {
+                    clone.querySelector("img").src = JuvarAbrera.API_ROOT_URL + project.client.logo_white;
+                } else {
+                    clone.querySelector("img").src = JuvarAbrera.API_ROOT_URL + project.client.logo;
+                }
                 clone.querySelector("img").alt = project.client.name;
                 clone.querySelector("img").title = project.client.name;
             }
@@ -158,11 +165,14 @@ class Portfolio {
             clone.querySelector("span").innerText = project.date;
             clone.querySelector(".portfolio-ss").style.backgroundImage = `url(${JuvarAbrera.API_ROOT_URL}${project.thumbnail})`;
             clone.removeAttribute("data-template");
+            if(project.is_featured) {
+                clone.querySelector(".tags").insertAdjacentHTML("beforeend", `<span class="tag">Featured</span>`)
+            }
             for(let j in project.tags) {
                 let tag = project.tags[j];
                 clone.querySelector(".tags").insertAdjacentHTML("beforeend", `<span class="tag">${tag.name}</span>`)
             }
-            if(project.end_date == null) {
+            if(project.end_date == null && !project.is_featured) {
                 ongoing_projects++;
                 clone.querySelector(".tags").insertAdjacentHTML("beforeend", '<span class="tag green">Ongoing</span>')
             }

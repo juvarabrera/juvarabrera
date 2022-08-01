@@ -3,7 +3,7 @@ Oslo.Controller["HomeController"] = {
 		
 	},
 	"index": function(parameters) {
-		
+		mixpanel.track("Home");
 		return Oslo.View.render();
 	}
 }
