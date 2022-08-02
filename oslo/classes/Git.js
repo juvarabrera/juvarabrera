@@ -6,6 +6,7 @@ class Git {
         let week = null;
         this.contributions = null;
         let hasLastWeek = false;
+        let monthString = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
         while(oneYearAgo.getFullYear() != today.getFullYear() ||
             oneYearAgo.getMonth() != today.getMonth() ||
             oneYearAgo.getDate() != today.getDate() + 1) {
@@ -17,6 +18,14 @@ class Git {
             if(week == null || oneYearAgo.getDay() == 0) {
                 week = document.createElement("div");
                 week.classList.add("contribution-week");
+                let week_label = document.createElement("div");
+                week_label.classList.add("contribution-week-label");
+                let next7Days = new Date(oneYearAgo.getTime());
+                next7Days.setDate(oneYearAgo.getDate() + 7);
+                if(oneYearAgo.getMonth() != next7Days.getMonth()) {
+                    week_label.textContent = monthString[next7Days.getMonth()]
+                }
+                week.insertAdjacentElement("beforeend", week_label);
                 for(let i = 0; i < oneYearAgo.getDay(); i++) {
                     let day = document.createElement("div");
                     day.classList.add("contribution-day")
