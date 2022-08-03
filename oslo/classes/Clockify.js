@@ -101,6 +101,8 @@ class Clockify {
                 this.lastEntryId = this.time_entries.currentTimeEntry.id;
                 this.currentTimeEntry = this.time_entries.currentTimeEntry;
             }
+        } else {
+            this.currentTimeEntry = null;
         }
         this.duration = this.time_entries.duration;
 
