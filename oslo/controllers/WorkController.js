@@ -5,5 +5,9 @@ Oslo.Controller["WorkController"] = {
 	"index": function(parameters) {
 		mixpanel.track("Work");
 		return Oslo.View.render();
+	},
+	"git-art-planner": function(parameters) {
+		mixpanel.track("Git Art Planner");
+		return Oslo.View.render();
 	}
 }

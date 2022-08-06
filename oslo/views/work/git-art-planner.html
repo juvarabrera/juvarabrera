@@ -1,0 +1,77 @@
+<div id="view">
+    <style>
+        .highlight {
+            background: #005cb9 !important;
+        }
+        .error {
+            color: red;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+    </style>
+    <section>
+        <div class="wrapper">
+            <div class="d-flex justify-content-between align-items-end">
+                <h1 style="margin:0;">Git Art Planner</h1>
+                <a href="#" style="margin:0;" class="btn">Source Code <i class="mdi mdi-github-circle"></i></a>
+            </div>
+            <hr>
+            <div id="contribution-planner"></div>
+            <hr>
+            <h3>Input</h3>
+            <form id="form" class="d-flex justify-content-between align-items-start">
+                <div class="mb-2">
+                    Text: <input type="text" id="txtText" name="text">
+                    <div class="error" id="letterError"></div>
+                </div>
+                <div class="mb-2">
+                    Start Date: <input type="text" id="txtDate" maxlength="10" name="date" placeholder="YYYY-MM-DD">
+                    <div class="error" id="dateError"></div>
+                </div>
+            </form>
+            <hr>
+            <h3>Output</h3>
+            <h5>Dates you need to contribute</h5>
+            <div id="datesContribute">
+            </div>
+        </div>
+    </section>
+    <script>
+        let txtText = document.getElementById("txtText");
+        let txtDate = document.getElementById("txtDate");
+        let letterError = document.getElementById("letterError");
+        let dateError = document.getElementById("dateError");
+        let datesContribute = document.getElementById("datesContribute");
+        txtText.addEventListener("keyup", event => {
+            let text = event.target.value;
+            let output = gitArtPlanner.renderText(text);
+            letterError.innerHTML = "";
+            if (output.errorLetters.length != 0) {
+                letterError.innerHTML = `The following characters is not supported: `;
+                output.errorLetters.forEach(letter => {
+                    letterError.innerHTML += `<span class="tag">${letter}</span>`;
+                });
+            }
+            datesContribute.innerHTML = "";
+            if (output.dates.length != 0)
+                output.dates.forEach(date => {
+                    datesContribute.innerHTML += `<span class="tag">${date}</span>`;
+                });
+        });
+        txtDate.addEventListener("keyup", event => {
+            let dateString = event.target.value;
+            let dateElements = dateString.split("-");
+            dateError.innerHTML = '';
+            let date = new Date(parseInt(dateElements[0]), parseInt(dateElements[1]) - 1, dateElements[2]);
+            if (dateString == "") date = new Date();
+            if (date instanceof Date && !isNaN(date.valueOf())) {
+                gitArtPlanner.renderBlank(date);
+                let keyupEvent = new Event('keyup');
+                txtText.dispatchEvent(keyupEvent);
+            } else {
+                dateError.innerHTML = 'Cannot parse date. Please use YYYY-MM-DD format';
+            }
+        });
+        let gitArtPlanner = new GitArtPlanner(document.getElementById("contribution-planner"));
+    </script>
+</div>

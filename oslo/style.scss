@@ -590,6 +590,9 @@ body.has-modal {
 .align-items-start {
     align-items: flex-start;
 }
+.align-items-end {
+    align-items: flex-end;
+}
 .align-items-center {
     align-items: center;
 }
@@ -821,21 +824,49 @@ body.dark-mode {
         }
     }
 }
-.contribution-calendar {
-    width: 100%;
+.contribution-year {
     padding: 0px 24px;
+    width: 100%;
     box-sizing: border-box;
+}
+.contribution-calendar {
     display: flex;
+    margin-bottom: 24px;
     flex-direction: row;
     justify-content: space-between;
     .contribution-week {
         display: flex;
         flex-direction: column;
-        div {
+        &:last-child .contribution-week-label {
+            visibility: hidden;
+        }
+        & > div {
             height: 12px;
             width: 12px;
             margin: 1px;
             background: #d0d0d0;
+        }
+        div.contribution-day {
+            position: relative;
+            .contribution-day-tooltip {
+                display: none;
+                z-index: 10;
+                bottom: 24px;
+                left: -50%;
+                white-space: nowrap;
+                position: absolute;
+                background: #005cb9;
+                color: white;
+                padding: 4px;
+                font-size: 11px;
+                border-radius: 4px;
+                box-shadow: 0px 3px 3px rgba(0,0,0,.2);
+            }
+            &:hover {
+                .contribution-day-tooltip {
+                    display: block;
+                }
+            }
         }
         div.transparent {
             background: transparent;
@@ -863,6 +894,9 @@ body.dark-mode {
             font-weight: bold;
             color: #005cb9;
         }
+        .contribution-week-label {
+            height: 18px;
+        }
     }
 }
 @media screen and (max-width: 900px) {
@@ -886,6 +920,9 @@ body.dark-mode {
                 height: 8px;
                 margin: 2px;
                 font-size: 9px;
+            }
+            .contribution-week-label {
+                height: 16px;
             }
         }
     }
@@ -941,6 +978,9 @@ body.dark-mode {
             }
             div:first-child {
                 width: 32px;
+            }
+            .contribution-week-label {
+                height: 12px;
             }
         }
     }

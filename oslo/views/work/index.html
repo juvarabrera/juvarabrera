@@ -111,19 +111,7 @@
     <section class="contribution">
         <div class="wrapper">
             <h2>Code Contribution</h2>
-            <p>Activities include issues, merge requests, pushes, and comments from different sources: <a href="https://www.juvarabrera.com/github" target="_blank">github.com</a>, <a href="https://www.juvarabrera.com/gitlab" target="_blank">gitlab.com</a>, <a href="https://gitlab.chits.ph/j.abrera" target="_blank">gitlab.chits.ph (internal)</a>. Updates once a day.</p>
-        </div>
-        <div class="contribution-calendar">
-            <div class="contribution-day-label">
-                <div class="contribution-week-label"></div>
-                <div></div>
-                <div>M</div>
-                <div></div>
-                <div>W</div>
-                <div></div>
-                <div>F</div>
-                <div></div>
-            </div>
+            <p>Activities include issues, merge requests, pushes, and comments from different sources: <a href="https://www.juvarabrera.com/github" target="_blank">github.com</a>, <a href="https://www.juvarabrera.com/gitlab" target="_blank">gitlab.com</a>, <a href="https://gitlab.chits.ph/j.abrera" target="_blank">gitlab.chits.ph (internal)</a>.</p>
         </div>
         <div class="wrapper">
             <div class="contribution-label"><div class="level-0" title="No contributions"></div>0</div>
@@ -133,6 +121,19 @@
             <div class="contribution-label"><div class="level-4" title="15-19 contributions"></div>15-19</div>
             <div class="contribution-label"><div class="level-5" title="20-24 contributions"></div>20-24</div>
             <div class="contribution-label"><div class="level-6" title="25+ contributions"></div>25+</div>
+        </div>
+        <div class="contributions">
+        </div>
+        <div class="d-flex justify-content-around" style="margin-top: 48px;">
+            <div class="big-number">
+                <h1 id="num_contribution_total" data-animate-number-to="">0</h1>
+                <div>Total Contributions</div>
+                <small>Issues, commits, merge requests, comments</small>
+            </div>
+            <div class="big-number">
+                <h1 id="num_contribution_days_streak" data-animate-number-to="">0</h1>
+                <span>Days Record Streak<br><small id="num_contribution_days_streak_date"></small></span>
+            </div>
         </div>
     </section>
     <section>
@@ -188,7 +189,7 @@
         portfolio.loadData();
         let miniProject = new MiniProject();
         miniProject.loadData();
-        let git = new Git();
+        let git = new Git(2015);
         git.loadData();
         (async function() {
             let clockify = new Clockify();
