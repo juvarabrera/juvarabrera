@@ -1,0 +1,70 @@
+<div id="view">
+    <section>
+        <div class="wrapper">
+            <h2>Contact Me</h2>
+            <div class="d-flex justify-content-between t-flex-column">
+                <div style="width: 100%;">
+                    <form id="form">
+                        <label>
+                            Name*
+                            <input type="text" required name="name">
+                        </label>
+                        <label>
+                            Email
+                            <input type="email" name="email">
+                        </label>
+                        <label>
+                            Message*
+                            <textarea required name="message"></textarea>
+                        </label>
+                        <div class="text-right">
+                            
+                            <button type="submit" class="btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div style="width: 100%;padding: 24px;box-sizing: border-box;">
+                    <p>Alternatively, you can send me an email on the following email below. For security purposes, you can also include my PGP key if you want to encrypt the email.</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td><p><b>Email</b></p></td>
+                                <td><p><b>PGP</b></p></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="mailto:me@juvarabrera.com">me@juvarabrera.com</a></td>
+                                <td>
+                                    <a href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xddd80ff18932796a" target="_blank">0xddd80ff18932796a<i style="font-size: 16px;" class="mdi mdi-open-in-new"></i></a><br>
+                                    <small>keyserver.ubuntu.com</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let name = document.querySelector("[name='name']");
+        let email = document.querySelector("[name='email']");
+        let message = document.querySelector("[name='message']");
+        document.getElementById("form").addEventListener("submit", event => {
+            fetch("http://localhost:8001/contact", {
+                "method": "POST",
+                "body": JSON.stringify({
+                    name: name.value,
+                    email: email.value,
+                    message: message.value,
+                }),
+                "headers": {
+                    "Content-type": "application/json"
+                }
+            }).then(res => {
+                console.log(res);
+            })
+            event.preventDefault();
+        });
+    </script>
+</div>

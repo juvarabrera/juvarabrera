@@ -19,7 +19,7 @@
     font-weight: 400;
     font-style: normal;
 }
-.mdi{font-size:24px;vertical-align:middle}.mdi.no-pad{margin-left:0;margin-right:0}.mdi.pad{margin:8px}.mdi.pad-left{margin-left:8px}.mdi.pad-right{margin-right:8px}.mdi-set,.mdi:before{display:inline-block;font:normal normal normal 24px/1 "Material Design Icons";font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transform:translate(0,0)}.mdi-linkedin:before{content:"\F33B"}.mdi-github-circle:before{content:"\F2A4"}.mdi-facebook:before{content:"\F20C"}.mdi-twitter:before{content:"\F544"}.mdi-twitch:before{content:"\F543"}.mdi-youtube-play:before{content:"\F5C3"}.mdi-email:before{content:"\F1EE"}.mdi-close-circle:before{content:"\F159"}.mdi-chevron-left:before{content:"\F141"}.mdi-chevron-right:before{content:"\F142"}.mdi-trending-down:before{content:"\F533"}.mdi-trending-neutral:before{content:"\F534"}.mdi-trending-up:before{content:"\F535"}
+.mdi{font-size:24px;vertical-align:middle}.mdi.no-pad{margin-left:0;margin-right:0}.mdi.pad{margin:8px}.mdi.pad-left{margin-left:8px}.mdi.pad-right{margin-right:8px}.mdi-set,.mdi:before{display:inline-block;font:normal normal normal 24px/1 "Material Design Icons";font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transform:translate(0,0)}.mdi-linkedin:before{content:"\F33B"}.mdi-github-circle:before{content:"\F2A4"}.mdi-facebook:before{content:"\F20C"}.mdi-twitter:before{content:"\F544"}.mdi-twitch:before{content:"\F543"}.mdi-youtube-play:before{content:"\F5C3"}.mdi-email:before{content:"\F1EE"}.mdi-close-circle:before{content:"\F159"}.mdi-chevron-left:before{content:"\F141"}.mdi-chevron-right:before{content:"\F142"}.mdi-trending-down:before{content:"\F533"}.mdi-trending-neutral:before{content:"\F534"}.mdi-trending-up:before{content:"\F535"}.mdi-open-in-app:before{content:"\F3CB"}.mdi-open-in-new:before{content:"\F3CC"}
 body {
     margin: 0px;
     font-family: 'grandesign';
@@ -722,7 +722,7 @@ table.table {
         border-bottom: 1px solid rgba(0,0,0,.1);
     }
 }
-input, select {
+input, select, textarea {
     width: 100%;
     padding: 12px;
     box-sizing: border-box;
@@ -730,12 +730,22 @@ input, select {
     font-size: 16px;
     border: 2px solid rgba(0,0,0,0.2);
 }
-input:focus, select:focus {
+input:focus, select:focus, textarea:focus {
     outline: 0;
+}
+textarea {
+    resize: vertical;
+    min-height: 200px;
+    max-height: 500px;
 }
 .input-group {
     display: flex;
     align-items: stretch;
+}
+label {
+    display: inline-block;
+    margin-bottom: 16px;
+    width: 100%;
 }
 .input-group-prepend, .input-group-append {
     display: flex;
