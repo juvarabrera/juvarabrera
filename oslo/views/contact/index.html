@@ -54,9 +54,9 @@
             fetch("http://localhost:8001/contact", {
                 "method": "POST",
                 "body": JSON.stringify({
-                    name: name.value,
-                    email: email.value,
-                    message: message.value,
+                    name: name?.value,
+                    email: email?.value,
+                    message: message?.value,
                 }),
                 "headers": {
                     "Content-type": "application/json"
