@@ -46,6 +46,12 @@ class Git {
             yearHeader.textContent = today.getFullYear();
             yearMainContainer.insertAdjacentElement("beforeend",yearHeader);
 
+            let yearContributions = document.createElement("h4");
+            yearContributions.setAttribute("data-year", today.getFullYear());
+            yearContributions.setAttribute("data-contributions", 0);
+            yearContributions.textContent = "0 contributions";
+            yearMainContainer.insertAdjacentElement("beforeend",yearContributions);
+
             let yearContainer = document.createElement("div");
             yearContainer.classList.add("contribution-calendar");
             yearMainContainer.insertAdjacentElement("beforeend",yearContainer);
@@ -202,8 +208,14 @@ class Git {
 
         for(let i = 0; i < this.contributions.length; i++) {
             let dayElement = this.container.querySelector(`.contribution-day[data-date='${this.contributions[i].date}']`);
+            let year = this.contributions[i].date.split("-")[0];
+            let yearContributionsContainer = this.container.querySelector(`h4[data-year="${year}"]`);
+            let yearContributions = parseInt(yearContributionsContainer.attributes["data-contributions"].value);
             if(dayElement == null) continue
             let count = this.contributions[i].total_count;
+            yearContributions += count;
+            yearContributionsContainer.textContent = yearContributions.toLocaleString() + " contributions";
+            yearContributionsContainer.setAttribute("data-contributions", yearContributions);
             dayElement.setAttribute("data-count", count);
             let title = this.contributions[i].date + "\n";
             if(count >= 1) {

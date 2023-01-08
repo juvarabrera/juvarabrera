@@ -59,6 +59,9 @@ h1,h2,h3,h4,h5,h6 {
     margin: 0px;
     margin-bottom: 16px;
 }
+h4,h5,h6 {
+    color: #333;
+}
 p {
     margin: 0px;
     color: rgba(0,0,0,0.6);
@@ -192,6 +195,10 @@ header div {
 }
 .btn:hover {
     background: #005cb9;
+    color: white;
+}
+.btn-white {
+    border: 3px solid white;
     color: white;
 }
 section {
@@ -832,6 +839,19 @@ body.dark-mode {
         &.level-0 {
             background: #d0d0d0;
         }
+    }
+}
+.badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 1rem;
+    margin-bottom: 24px;
+    img {
+        vertical-align: middle;
+        width: 16.66%;
+        height: 100px;
+        object-fit: contain;
+        mix-blend-mode: multiply;
     }
 }
 .contribution-year {
